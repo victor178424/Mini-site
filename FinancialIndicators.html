@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Основные финансовые показатели</title>
+    <link rel="stylesheet" href="Style.css">
+    <script>
+        function stockPrice() {
+            let date = ['28.04.2023', '27.04.2023', '26.04.2023', '25.04.2023', '24.04.2023', '21.04.2023', '20.04.2023', '19.04.2023', '18.04.2023', '17.04.2023', '14.04.2023', '13.04.2023', '12.04.2023', '11.04.2023', '10.04.2023', '07.04.2023', '06.04.2023', '05.04.2023', '04.04.2023', '03.04.2023'];
+            let price = [2754, 2777.5, 2693.5, 2687, 2710, 2690, 2690, 2684.5, 2734.5, 2744.5, 2675, 2653.5, 2658.5, 2640, 2744, 2617, 2499, 2502.5, 2504.5, 2500, 2486.5];
+
+            let table = document.getElementById('stock-price');
+
+            for (let i = 0; i < date.length; i++) {
+                let tr = document.createElement('tr');
+                let td1 = document.createElement('td');
+                let td2 = document.createElement('td');
+
+                td1.innerHTML = date[i];
+                td2.innerHTML = price[i];
+                tr.appendChild(td1);
+                tr.appendChild(td2);
+                table.appendChild(tr);
+            }
+
+            let sum = 0;
+            for (let i = 0; i < price.length; i++) {
+                sum = sum + price[i];
+            }
+            let average = sum / price.length;
+            document.getElementById('average-price').innerHTML = 'Среднее значение: ' + average;
+
+            let max = 0;
+            let min = price[0];
+            for (let i = 0; i < price.length; i++) {
+                if (max < price[i]) {
+                    max = price[i];
+                }
+                else if (min > price[i]) {
+                    min = price[i];
+                }
+            }
+            document.getElementById('min').innerHTML = 'Минимальное значение: ' + min;
+            document.getElementById('max').innerHTML = 'Максимальное значение: ' + max;
+        }
+    </script>
+</head>
+
+<body>
+    <header>
+        <a href="#" class="logo">
+            <img src="images/logo.png" style="height: 34px; width: 153;">
+        </a>
+        <nav>
+            <ul>
+                <li><a href="AboutCompany.html">О компании</a></li>
+                <li style="background-color: white; border-radius: 12px;">
+                    <a href="FinancialIndicators.html">Основные финансовыепоказатели</a>
+                </li>
+                <li><a href="ContactDetails.html">Контактные данные</a></li>
+                <li><a href="Video.html">Видео</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="aboutCompanyImg">
+
+            <p style="font-size: 32px; margin-top: 60px;">Капитализация: 3 887 686 202 400,0005 ₽</p>
+            <button style="width: 608px; height: 100px; font-size: 20px;" onclick="stockPrice()">Данные акций за
+                апрель</button>
+            <table border="1" id="stock-price"></table>
+            <div style="font-weight: 900;" id="average-price"></div>
+            <div style="font-weight: 900;" id="min"></div>
+            <div style="font-weight: 900;" id="max"></div>
+        </div>
+    </main>
+</body>
+
+</html>
